@@ -2,10 +2,10 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['add'])){
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
+		$firstname = strip_tags($_POST['firstname']);
+		$lastname = strip_tags($_POST['lastname']);
 		$position = $_POST['position'];
-		$platform = $_POST['platform'];
+		$platform = strip_tags($_POST['platform']);
 		$filename = $_FILES['photo']['name'];
 		if(!empty($filename)){
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
