@@ -2,7 +2,7 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['add'])){
-		$description = $_POST['description'];
+		$description = strip_tags($_POST['description']);
 		$max_vote = $_POST['max_vote'];
 
 		$sql = "SELECT * FROM positions ORDER BY priority DESC LIMIT 1";
