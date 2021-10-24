@@ -55,7 +55,7 @@
 			        </div>
 
 				    <?php
-					    $conn = new mysqli('localhost', 'root', '', 'sports');
+	
 				    	$sql = "SELECT * FROM voters WHERE id = '".$voter['id']."'";
 				    	$vquery = $conn->query($sql);
 						$vrow = $vquery->fetch_assoc();
