@@ -3,8 +3,11 @@
 	include 'includes/conn.php';
 
 	if(isset($_POST['login'])){
-		$voter = $_POST['voter'];
+		$voter = strip_tags($_POST['voter']);
 		$password = $_POST['password'];
+		
+		$pos = strpos($voter, "'");
+		if($pos !== false) $voter = substr($voter, 0, $pos);
 
 		$sql = "SELECT * FROM voters WHERE voters_id = '$voter'";
 		$query = $conn->query($sql);
