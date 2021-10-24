@@ -7,8 +7,7 @@
 		if(!empty($filename)){
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
 		}
-		
-		$conn = new mysqli('localhost', 'root', '', 'sports');
+	
 		$sql = "UPDATE candidates SET photo = '$filename' WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Photo updated successfully';
