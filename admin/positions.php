@@ -58,7 +58,6 @@
                 </thead>
                 <tbody>
                   <?php
-				    $conn = new mysqli('localhost', 'root', '', 'sports');
                     $sql = "SELECT * FROM positions ORDER BY priority ASC";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
