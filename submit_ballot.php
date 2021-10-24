@@ -8,7 +8,6 @@
 		}
 		else{
 			$_SESSION['post'] = $_POST;
-			$conn = new mysqli('localhost', 'root', '', 'sports');
 			$sql = "SELECT * FROM positions";
 			$query = $conn->query($sql);
 			$error = false;
