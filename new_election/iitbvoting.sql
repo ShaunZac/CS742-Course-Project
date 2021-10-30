@@ -55,7 +55,7 @@ CREATE TABLE `positions` (
 
 CREATE TABLE `votes` (
   `id` int(11) NOT NULL,
-  `voters_id` int(11) NOT NULL,
+  `voter_id` int(11) NOT NULL,
   `candidate_id` int(11) NOT NULL,
   `position_id` int(11) NOT NULL,
   `ciphertext` int(20) NOT NULL
