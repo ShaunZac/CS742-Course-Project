@@ -44,15 +44,15 @@
 							$output = NULL;
 							$cdId = $candidate_row['id'];
 							if($cdId == $candidate){
-								exec("C:\Python310\python homomorphic.py 1", $output, $ret_code);
+								exec("C:\Python310\python paillier.py 1", $output, $ret_code);
 							}
 							else{
-								exec("C:\Python310\python homomorphic.py 0", $output, $ret_code);
+								exec("C:\Python310\python paillier.py 0", $output, $ret_code);
 							}	
 							
 							$cipher = $output[0];
 							$out1 = $cipher;
-							$sql_array[] = "UPDATE en_votes SET ciphertext = $cipher where candidate_id = $cdId and position_id = $pos_id and voter_id = $vId";	
+							$sql_array[] = "UPDATE en_votes SET ciphertext = '$cipher' where candidate_id = $cdId and position_id = $pos_id and voter_id = $vId";	
 						}	
 					}
 
