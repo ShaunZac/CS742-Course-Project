@@ -32,10 +32,28 @@
 						
 					}
 					else{
-						$updat = "UPDATE voters SET voted = 1 WHERE id = '".$voter['id']."'";
+					    $updat = "UPDATE voters SET voted = 1 WHERE id = '".$voter['id']."'";
 					    $que = $conn->query($updat);
 						$candidate = $_POST[$position];
-						$sql_array[] = "INSERT INTO votes ( candidate_id, position_id) VALUES ('$candidate', '$pos_id')";
+						$vId = $voter['id'];
+						
+						$sql = "SELECT id from CANDIDATES where position_id = $pos_id";
+						$que = $conn->query($sql);
+						
+						while($candidate_row = $que->fetch_assoc()){
+							$output = NULL;
+							$cdId = $candidate_row['id'];
+							if($cdId == $candidate){
+								exec("C:\Python310\python homomorphic.py 1", $output, $ret_code);
+							}
+							else{
+								exec("C:\Python310\python homomorphic.py 0", $output, $ret_code);
+							}	
+							
+							$cipher = $output[0];
+							$out1 = $cipher;
+							$sql_array[] = "UPDATE en_votes SET ciphertext = $cipher where candidate_id = $cdId and position_id = $pos_id and voter_id = $vId";	
+						}	
 					}
 
 				}

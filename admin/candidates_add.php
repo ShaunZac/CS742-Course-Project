@@ -12,6 +12,27 @@
 		}
 		$sql = "INSERT INTO candidates (position_id, firstname, lastname, photo, platform) VALUES ('$position', '$firstname', '$lastname', '$filename', '$platform')";
 		if($conn->query($sql)){
+			$sql = "SELECT id from candidates where firstname = '$firstname' and lastname = '$lastname'";
+			$query = $conn->query($sql);
+			$row = $query->fetch_assoc();
+			$cdId = $row['id']; 
+			
+			$sql_array = array();
+			$sql = "SELECT id from voters";
+			$query = $conn->query($sql);
+			while($row = $query->fetch_assoc()){
+				$vId = $row['id'];
+				$output = NULL;
+				exec("C:\Python310\python ..\homomorphic.py 0", $output, $ret_code);
+				$cipher = $output[0];
+				
+				$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $position, $cipher)";		
+			}
+			
+			foreach($sql_array as $sql_row){
+				$conn->query($sql_row);
+			}
+			
 			$_SESSION['success'] = 'Candidate added successfully';
 		}
 		else{
