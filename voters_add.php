@@ -31,6 +31,34 @@
 		else{
 			$sql = "INSERT INTO voters (voters_id, password, firstname, lastname, photo) VALUES ('$voter', '$password', '$firstname', '$lastname', '$filename')";
 			if($conn->query($sql)){
+				$sql = "SELECT id from voters where voters_id = '$voter'";
+				$query = $conn->query($sql);
+				$row = $query->fetch_assoc();
+				$vId = $row['id']; 
+				
+				$sql_array = array();
+				$sql = "SELECT id from POSITIONS";
+				$query = $conn->query($sql);
+				while($row = $query->fetch_assoc()){
+					$pos_id = $row['id'];
+					
+					$sql = "SELECT id from CANDIDATES where position_id = $pos_id";
+					$que = $conn->query($sql);
+					
+					while($cd_row = $que->fetch_assoc()){
+						$output = NULL;
+						exec("C:\Python310\python homomorphic.py 0", $output, $ret_code);
+					    $cipher = $output[0];
+						
+						$cdId = $cd_row['id'];
+						$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $pos_id,$cipher)";		
+					}
+				}
+				
+				foreach($sql_array as $sql_row){
+					$conn->query($sql_row);
+				}
+								
 				header('location: index.php');
 			}
 			else{
