@@ -23,10 +23,10 @@
 			while($row = $query->fetch_assoc()){
 				$vId = $row['id'];
 				$output = NULL;
-				exec("C:\Python310\python ..\homomorphic.py 0", $output, $ret_code);
+				exec("C:\Python310\python ..\paillier.py 0", $output, $ret_code);
 				$cipher = $output[0];
 				
-				$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $position, $cipher)";		
+				$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $position, '$cipher')";		
 			}
 			
 			foreach($sql_array as $sql_row){
