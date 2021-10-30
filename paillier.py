@@ -1,5 +1,7 @@
-from phe import paillier
+#!C:/Python310/python
 
+from phe import paillier
+import sys
 
 class Paillier:
     def __init__(self):
@@ -21,10 +23,13 @@ class Paillier:
 
 
 trial = Paillier()
-num1 = trial.encrypt(100)
-num2 = trial.encrypt(200)
+arg = int(sys.argv[1])
+num1 = trial.encrypt(arg)
+print(str(num1))
 
-public_key_trial = paillier.PaillierPublicKey(num1.public_key.n)
-num3 = paillier.EncryptedNumber(public_key_trial, num1.ciphertext)
+#num2 = trial.encrypt(200)
 
-trial.decrypt(trial.add_encrypted([num1, num2]))
+#public_key_trial = paillier.PaillierPublicKey(num1.public_key.n)
+#num3 = paillier.EncryptedNumber(public_key_trial, num1.ciphertext)
+
+#trial.decrypt(trial.add_encrypted([num1, num2]))
