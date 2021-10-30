@@ -58,7 +58,7 @@ CREATE TABLE `votes` (
   `voter_id` int(11) NOT NULL,
   `candidate_id` int(11) NOT NULL,
   `position_id` int(11) NOT NULL,
-  `ciphertext` int(20) NOT NULL
+  `ciphertext` varchar(65535) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
