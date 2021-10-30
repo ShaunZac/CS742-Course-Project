@@ -47,11 +47,11 @@
 					
 					while($cd_row = $que->fetch_assoc()){
 						$output = NULL;
-						exec("C:\Python310\python homomorphic.py 0", $output, $ret_code);
+						exec("C:\Python310\python paillier.py 0", $output, $ret_code);
 					    $cipher = $output[0];
 						
 						$cdId = $cd_row['id'];
-						$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $pos_id,$cipher)";		
+						$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $pos_id, '$cipher')";		
 					}
 				}
 				
