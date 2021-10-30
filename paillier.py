@@ -25,6 +25,7 @@ class Paillier:
 trial = Paillier()
 arg = int(sys.argv[1])
 num1 = trial.encrypt(arg)
+num1 = num1.ciphertext()
 print(str(num1))
 
 #num2 = trial.encrypt(200)
