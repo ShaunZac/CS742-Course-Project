@@ -12,6 +12,13 @@
 		}
 		$sql = "INSERT INTO candidates (position_id, firstname, lastname, photo, platform) VALUES ('$position', '$firstname', '$lastname', '$filename', '$platform')";
 		if($conn->query($sql)){
+			// paillier keys fetch
+			$sql = "SELECT * from paillier_keys";
+			$query = $conn->query($sql);
+			$row = $query->fetch_assoc();
+			
+			$keys = $row['n']. " " .$row['p']. " " .$row['q']. " 0";
+
 			$sql = "SELECT id from candidates where firstname = '$firstname' and lastname = '$lastname'";
 			$query = $conn->query($sql);
 			$row = $query->fetch_assoc();
@@ -23,7 +30,7 @@
 			while($row = $query->fetch_assoc()){
 				$vId = $row['id'];
 				$output = NULL;
-				exec("C:\Python310\python ..\paillier.py 0", $output, $ret_code);
+				exec("C:\Python310\python ..\paillier.py 1 ".$keys, $output, $ret_code);
 				$cipher = $output[0];
 				
 				$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $position, '$cipher')";		
