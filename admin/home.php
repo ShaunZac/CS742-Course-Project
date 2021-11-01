@@ -119,16 +119,9 @@
           </div>
         </div>
         
-
-      <div class="row">
         <div class="col-xs-12">
-          <h3>  Votes Tally
-            <span class="pull-right">
-              <a href="print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Print</a>
-            </span>
-          </h3>
+          <h3> Votes Tally </h3>
         </div>
-      </div>
 
       <?php
         $sql = "SELECT * FROM positions ORDER BY priority ASC";
