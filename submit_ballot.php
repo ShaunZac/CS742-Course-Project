@@ -7,6 +7,13 @@
 			$_SESSION['error'][] = 'Please vote atleast one candidate';
 		}
 		else{
+			// paillier keys fetch
+			$sql = "SELECT * from paillier_keys";
+			$query = $conn->query($sql);
+			$row = $query->fetch_assoc();
+			
+			$keys = $row['n']. " " .$row['p']. " " .$row['q'];
+			
 			$_SESSION['post'] = $_POST;
 			$sql = "SELECT * FROM positions";
 			$query = $conn->query($sql);
@@ -44,11 +51,11 @@
 							$output = NULL;
 							$cdId = $candidate_row['id'];
 							if($cdId == $candidate){
-								exec("C:\Python310\python paillier.py 1", $output, $ret_code);
+								exec("C:\Python310\python paillier.py 1 ".$keys." 1", $output, $ret_code);
 							}
 							else{
-								exec("C:\Python310\python paillier.py 0", $output, $ret_code);
-							}	
+								exec("C:\Python310\python paillier.py 1 ".$keys." 0", $output, $ret_code);
+							}		
 							
 							$cipher = $output[0];
 							$out1 = $cipher;
