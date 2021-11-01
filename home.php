@@ -58,9 +58,19 @@
 	
 				    	$sql = "SELECT * FROM voters WHERE id = '".$voter['id']."'";
 				    	$vquery = $conn->query($sql);
-						$vrow = $vquery->fetch_assoc();
+					$vrow = $vquery->fetch_assoc();
+				  	// paillier keys fetch
+					$sql = "SELECT * from paillier_keys";
+					$query = $conn->query($sql);
+					$row = $query->fetch_assoc();
+
+					$keys = $row['n']. " " .$row['p']. " " .$row['q'];
+						
+					$output = NULL;
+					exec("C:\Python310\python paillier.py 3 " . $keys ." ".$vrow['id'], $output, $ret_code);
+	    
 				  
-						if($vrow !=NULL && $vrow['voted'] == 1){
+					 if($vrow !=NULL && $output[0] >= '1'){
 				    		?>
 				    		<div class="text-center">
 					    		<h3>You have already voted for this election.</h3>
