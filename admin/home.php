@@ -165,6 +165,13 @@
 
 <?php include 'includes/scripts.php'; ?>
 <?php
+  // paillier keys fetch
+  $sql = "SELECT * from paillier_keys";
+  $query = $conn->query($sql);
+  $row = $query->fetch_assoc();
+
+  $keys = $row['n']. " " .$row['p']. " " .$row['q'];
+	
   $sql = "SELECT * FROM positions ORDER BY priority ASC";
   $query = $conn->query($sql);
   while($row = $query->fetch_assoc()){
@@ -173,10 +180,15 @@
     $carray = array();
     $varray = array();
     while($crow = $cquery->fetch_assoc()){
-      array_push($carray, $crow['firstname']);
+      $name = $crow['firstname']. " " .$crow['lastname'];	
+      array_push($carray, $name);
       $sql = "SELECT * FROM votes WHERE candidate_id = '".$crow['id']."'";
       $vquery = $conn->query($sql);
-      array_push($varray, $vquery->num_rows);
+	    
+      $output = NULL;
+      exec("C:\Python310\python ..\paillier.py 2 " . $keys ." ".$crow['id'], $output, $ret_code);
+	    
+      array_push($varray, $output[0]);
     }
     $carray = json_encode($carray);
     $varray = json_encode($varray);
