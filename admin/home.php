@@ -119,34 +119,39 @@
           </div>
         </div>
         
-        <div class="col-xs-12">
-          <h3> Votes Tally </h3>
-        </div>
-
       <?php
-        $sql = "SELECT * FROM positions ORDER BY priority ASC";
-        $query = $conn->query($sql);
-        $inc = 2;
-        while($row = $query->fetch_assoc()){
-          $inc = ($inc == 2) ? 1 : $inc+1; 
-          if($inc == 1) echo "<div class='row'>";
-          echo "
-            <div class='col-sm-6'>
-              <div class='box box-solid'>
-                <div class='box-header with-border'>
-                  <h4 class='box-title'><b>".$row['description']."</b></h4>
-                </div>
-                <div class='box-body'>
-                  <div class='chart'>
-                    <canvas id='".slugify($row['description'])."' style='height:200px'></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ";
-          if($inc == 2) echo "</div>";  
-        }
-        if($inc == 1) echo "<div class='col-sm-6'></div></div>";
+        $date_now = new DateTime();
+	$date2    = new DateTime("11/02/2021");
+		
+	if($date_now > $date2){
+	    echo "<div class='col-xs-12'>
+	            <h3> Votes Tally </h3> 
+	         </div>";
+		
+		$sql = "SELECT * FROM positions ORDER BY priority ASC";
+		$query = $conn->query($sql);
+		$inc = 2;
+		while($row = $query->fetch_assoc()){
+		  $inc = ($inc == 2) ? 1 : $inc+1; 
+		  if($inc == 1) echo "<div class='row'>";
+		  echo "
+			<div class='col-sm-6'>
+			  <div class='box box-solid'>
+				<div class='box-header with-border'>
+				  <h4 class='box-title'><b>".$row['description']."</b></h4>
+				</div>
+				<div class='box-body'>
+				  <div class='chart'>
+					<canvas id='".slugify($row['description'])."' style='height:200px'></canvas>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  ";
+		  if($inc == 2) echo "</div>";  
+		}
+		if($inc == 1) echo "<div class='col-sm-6'></div></div>";
+	}
       ?>
 
       </section>
