@@ -31,6 +31,13 @@
 		else{
 			$sql = "INSERT INTO voters (voters_id, password, firstname, lastname, photo) VALUES ('$voter', '$password', '$firstname', '$lastname', '$filename')";
 			if($conn->query($sql)){
+				// paillier keys fetch
+				$sql = "SELECT * from paillier_keys";
+				$query = $conn->query($sql);
+				$row = $query->fetch_assoc();
+				
+				$keys = $row['n']. " " .$row['p']. " " .$row['q']. " 0";
+				
 				$sql = "SELECT id from voters where voters_id = '$voter'";
 				$query = $conn->query($sql);
 				$row = $query->fetch_assoc();
@@ -47,7 +54,7 @@
 					
 					while($cd_row = $que->fetch_assoc()){
 						$output = NULL;
-						exec("C:\Python310\python paillier.py 0", $output, $ret_code);
+						exec("C:\Python310\python paillier.py 1 ".$keys, $output, $ret_code);
 					    $cipher = $output[0];
 						
 						$cdId = $cd_row['id'];
