@@ -163,12 +163,7 @@
 
 <?php include 'includes/scripts.php'; ?>
 <?php
-  // paillier keys fetch
-  $sql = "SELECT * from paillier_keys";
-  $query = $conn->query($sql);
-  $row = $query->fetch_assoc();
-
-  $keys = $row['n']. " " .$row['p']. " " .$row['q'];
+  include '../includes/keys.php';
 	
   $sql = "SELECT * FROM positions ORDER BY priority ASC";
   $query = $conn->query($sql);
