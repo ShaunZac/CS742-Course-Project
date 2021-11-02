@@ -1,5 +1,6 @@
 <?php
 	include 'admin/includes/session.php';
+	include 'includes/keys.php';
 
 	if(isset($_POST['add'])){
 		
@@ -31,12 +32,7 @@
 		else{
 			$sql = "INSERT INTO voters (voters_id, password, firstname, lastname, photo) VALUES ('$voter', '$password', '$firstname', '$lastname', '$filename')";
 			if($conn->query($sql)){
-				// paillier keys fetch
-				$sql = "SELECT * from paillier_keys";
-				$query = $conn->query($sql);
-				$row = $query->fetch_assoc();
-				
-				$keys = $row['n']. " " .$row['p']. " " .$row['q']. " 0";
+				$keys = $keys. " 0";
 				
 				$sql = "SELECT id from voters where voters_id = '$voter'";
 				$query = $conn->query($sql);
