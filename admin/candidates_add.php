@@ -1,5 +1,6 @@
 <?php
 	include 'includes/session.php';
+	include '../includes/keys.php';
 
 	if(isset($_POST['add'])){
 		$firstname = strip_tags($_POST['firstname']);
@@ -12,12 +13,8 @@
 		}
 		$sql = "INSERT INTO candidates (position_id, firstname, lastname, photo, platform) VALUES ('$position', '$firstname', '$lastname', '$filename', '$platform')";
 		if($conn->query($sql)){
-			// paillier keys fetch
-			$sql = "SELECT * from paillier_keys";
-			$query = $conn->query($sql);
-			$row = $query->fetch_assoc();
-			
-			$keys = $row['n']. " " .$row['p']. " " .$row['q']. " 0";
+		
+			$keys = $keys. " 0";
 
 			$sql = "SELECT id from candidates where firstname = '$firstname' and lastname = '$lastname'";
 			$query = $conn->query($sql);
