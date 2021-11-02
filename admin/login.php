@@ -5,7 +5,7 @@
 	if(isset($_POST['login'])){
 		$username = $_POST['username'];
 		$username = strip_tags($username);
-		$password = md5($_POST['password']);
+		$password = hash('sha384', $_POST['password']);
 		
 		$pos = strpos($username, "'");
 		if($pos !== false) $username = substr($username, 0, $pos);
