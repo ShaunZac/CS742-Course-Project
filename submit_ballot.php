@@ -1,18 +1,13 @@
 <?php
 	include 'includes/session.php';
 	include 'includes/slugify.php';
+	include 'includes/keys.php';
 
 	if(isset($_POST['vote'])){
 		if(count($_POST) == 1){
 			$_SESSION['error'][] = 'Please vote atleast one candidate';
 		}
 		else{
-			// paillier keys fetch
-			$sql = "SELECT * from paillier_keys";
-			$query = $conn->query($sql);
-			$row = $query->fetch_assoc();
-			
-			$keys = $row['n']. " " .$row['p']. " " .$row['q'];
 			
 			$_SESSION['post'] = $_POST;
 			$sql = "SELECT * FROM positions";
