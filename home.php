@@ -55,17 +55,11 @@
 			        </div>
 
 				    <?php
-	
+					include 'includes/keys.php';
 				    	$sql = "SELECT * FROM voters WHERE id = '".$voter['id']."'";
 				    	$vquery = $conn->query($sql);
 					$vrow = $vquery->fetch_assoc();
-				  	// paillier keys fetch
-					$sql = "SELECT * from paillier_keys";
-					$query = $conn->query($sql);
-					$row = $query->fetch_assoc();
-
-					$keys = $row['n']. " " .$row['p']. " " .$row['q'];
-						
+				  	
 					$output = NULL;
 					exec("C:\Python310\python paillier.py 3 " . $keys ." ".$vrow['id'], $output, $ret_code);
 	    
