@@ -179,7 +179,7 @@
       $vquery = $conn->query($sql);
 	    
       $output = NULL;
-      exec("C:\Python310\python ..\paillier.py 2 " . $keys ." ".$crow['id'], $output, $ret_code);
+      exec($path . " ..\paillier.py 2 " . $keys ." ".$crow['id'], $output, $ret_code);
 	    
       array_push($varray, $output[0]);
     }
