@@ -27,7 +27,7 @@
 			while($row = $query->fetch_assoc()){
 				$vId = $row['id'];
 				$output = NULL;
-				exec("C:\Python310\python ..\paillier.py 1 ".$keys, $output, $ret_code);
+				exec($path ." ..\paillier.py 1 ".$keys, $output, $ret_code);
 				$cipher = $output[0];
 				
 				$sql_array[] = "INSERT INTO en_votes (voter_id, candidate_id, position_id, ciphertext) VALUES ($vId, $cdId, $position, '$cipher')";		
