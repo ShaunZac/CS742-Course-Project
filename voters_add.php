@@ -50,7 +50,7 @@
 					
 					while($cd_row = $que->fetch_assoc()){
 						$output = NULL;
-						exec("C:\Python310\python paillier.py 1 ".$keys, $output, $ret_code);
+						exec($path . " paillier.py 1 ".$keys, $output, $ret_code);
 					    $cipher = $output[0];
 						
 						$cdId = $cd_row['id'];
