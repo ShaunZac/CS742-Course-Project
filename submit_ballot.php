@@ -46,10 +46,10 @@
 							$output = NULL;
 							$cdId = $candidate_row['id'];
 							if($cdId == $candidate){
-								exec("C:\Python310\python paillier.py 1 ".$keys." 1", $output, $ret_code);
+								exec($path . " paillier.py 1 ".$keys." 1", $output, $ret_code);
 							}
 							else{
-								exec("C:\Python310\python paillier.py 1 ".$keys." 0", $output, $ret_code);
+								exec($path . " paillier.py 1 ".$keys." 0", $output, $ret_code);
 							}		
 							
 							$cipher = $output[0];
