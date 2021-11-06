@@ -53,7 +53,7 @@ CREATE TABLE `positions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `votes` (
+CREATE TABLE `en_votes` (
   `id` int(11) NOT NULL,
   `voter_id` int(11) NOT NULL,
   `candidate_id` int(11) NOT NULL,
@@ -88,7 +88,7 @@ ALTER TABLE `positions`
 --
 -- Indexes for table `votes`
 --
-ALTER TABLE `votes`
+ALTER TABLE `en_votes`
   ADD PRIMARY KEY (`id`);
   
   ALTER TABLE `candidates`
@@ -100,7 +100,7 @@ ALTER TABLE `votes`
 ALTER TABLE `positions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
-ALTER TABLE `votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+ALTER TABLE `en_votes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
