@@ -16,7 +16,7 @@ CREATE TABLE `admin` (
 
 
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
-(1, 'admin', '9ca694a90285c034432c9550421b7b9dbd5c0f4b6673f05f6dbce58052ba20e4248041956ee8c9a2ec9f10290cdc0782', 'Admin', 'admin', 'facebook-profile-image.jpeg', '2021-10-09');
+(1, 'admin', '9ca694a90285c034432c9550421b7b9dbd5c0f4b6673f05f6dbce58052ba20e4248041956ee8c9a2ec9f10290cdc0782', 'Admin', 'admin','', '2021-10-09');
 
 
 CREATE TABLE `voters` (
