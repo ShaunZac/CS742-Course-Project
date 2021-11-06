@@ -1,24 +1,10 @@
-1.XAMPP
-
-2."TEXT EDITOR" NOTEPAD++ OR SUBLIME TEXT 3 / ETC.
-
-3"voting management system"
-
-4. Download the zip file/ download winrar
-
-5. Extract the file and copy "voting management system" folder
-
-6.Paste inside root directory/ where you install xammp local disk C: drive D: drive E: paste: (for xampp/htdocs, 
-
-7. Open PHPMyAdmin (http://localhost/phpmyadmin)
-
-8. Create a database with name votesystem
-
-6. Import votesystem.sql file(given inside the zip package in SQL file folder)
-
-7.Run the script http://localhost/voting management system
-
-username  Nurhodelta
-password  password
-
-Brought to you by: www.CampCodes.com
+1. XAMPP
+2. Add code folder in htdocs folder inside xampp
+3. Open PHPMyAdmin (http://localhost/phpmyadmin)
+4. Create a database with name iitbvoting by importing iitbvoting.sql file from new_election folder
+5. To setup python with php, download python and provide path in the system variables 
+6. Edit the path for python in paillier.py script and include/keys.php file.
+7. Run the script http://localhost/CS742-Course-Project/admin/index.php for the admin 
+8. Provide admin login credentials as username = admin and password = admin
+9. Run the script http://localhost/CS742-Course-Project/index.php for the voter login
+10. Register for a new voter and then login and vote for the elction.
