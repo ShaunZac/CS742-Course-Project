@@ -61,7 +61,7 @@
 					$vrow = $vquery->fetch_assoc();
 				  	
 					$output = NULL;
-					exec("C:\Python310\python paillier.py 3 " . $keys ." ".$vrow['id'], $output, $ret_code);
+					exec($path . " paillier.py 3 " . $keys ." ".$vrow['id'], $output, $ret_code);
 	    
 				  
 					 if($vrow !=NULL && $output[0] >= '1'){
